@@ -17,7 +17,7 @@ app.use(morgan('tiny'))
 app.use(bodyparser.urlencoded({extended:true}))
 
 // set view engine
-app.set("view engine",ejs)
+app.set("view engine","ejs")
 
 // load assets
 app.use('/css',express.static(path.resolve(__dirname,"assets/css")))
@@ -28,7 +28,7 @@ app.use('/img',express.static(path.resolve(__dirname,"assets/img")))
 
 
 app.get("/",(req,res)=>{
-    res.send("Crud Application")
+    res.render("index")
 })
 
 app.listen(PORT,()=>{
