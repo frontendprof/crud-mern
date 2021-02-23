@@ -179,7 +179,7 @@ a{
 }
 
 #update_user .form-group .radio,
-#add_user .form-group input[type="text"]{
+#add_user .form-group .radio{
     margin:1em 2em;
 }
 
