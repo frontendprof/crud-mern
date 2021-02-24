@@ -30,15 +30,51 @@ exports.create=(req,res)=>{
 }
 
 exports.find=(req,res)=>{
+
+    Userdb.find()
+    .then(user=>{
+        res.send(user)
+    })
+    .catch(err=>{
+        res.status(500).send({message:err.message||"Error ocurred while retrieving user information"})
+    })
     
 }
 
 
 exports.update=(req,res)=>{
-    
+    if(!req.body){
+        return res.status(400).send({message:"Data to update cannot be empty"})
+    }
+    const {id}=req.params;
+    Userdb.findByIdAndUpdate(id,req.body,{useFindAndModify:false})
+    .then(data=>{
+        if(!data){
+            res.status(404).send({message:`Cannot update user with ${id}`})
+        }else{
+            res.send(data)
+        }
+    })
+    .catch(err=>{
+        res.status(500).send({message:"Update user information error"})
+    })
 }
 
 
 exports.delete=(req,res)=>{
+
+    const {id}=req.params;
+
+    Userdb.findByIdAndDelete(id)
+    .then(data=>{
+        if(!data){
+            res.status(404).send({message:`Cannot delete info with id ${id}`})
+        }else{
+            res.send({message:"User successfully deleted"})
+        }
+    })
+    .catch(err=>{
+        res.status(500).send({message:`Could not delete user with id ${id}`})
+    })
     
 }
