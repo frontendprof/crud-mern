@@ -6,7 +6,7 @@ const services=require("../services/render")
 const controller=require("../controller/controller")
 
 
-route.get("/",services.homeRoutes)
+route.get("/",services.homeRoute)
 
 route.get("/add-user",services.addUser)
 
